@@ -3,17 +3,19 @@ package com.toscano.test1.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.toscano.test1.R
 import com.toscano.test1.data.entities.Users
 import com.toscano.test1.databinding.UsersLayoutItemsBinding
 
-class UsersAdapter (private val onDeleteItem : ( Int )-> Unit ,
-                    private val onSelectItem: ( Users ) -> Unit) : RecyclerView.Adapter<UsersAdapter.ViewHolderUsers>() {
+class UsersAdapterDiffUtil (private val onDeleteItem : (Int )-> Unit,
+                            private val onSelectItem: ( Users ) -> Unit) :
+                            ListAdapter<Users, UsersAdapterDiffUtil.ViewHolderUsers>(DiffUtilUserCallBack) {
 
-    //Creamos una variable adapter
-    var listUsers: List<Users> = listOf()
+
     //Creamos una CLase ViewHolder
     class ViewHolderUsers(view: View) : RecyclerView.ViewHolder(view){
 
@@ -49,22 +51,27 @@ class UsersAdapter (private val onDeleteItem : ( Int )-> Unit ,
         return ViewHolderUsers(inflater.inflate(R.layout.users_layout_items, parent,false))
     }
 
-    //Se encarga de gestionar el numero de datos exsiten y ver cuantas posiciones tiene.
-    //Funcion {}
-    /*
-    override fun getItemCount(): Int {
-
-        return listUsers.size
-    }
-    */
-    //Funcion Lineal
-    override fun getItemCount(): Int = listUsers.size
-
-
     //Ingresa cada uno de los elemoentos de las dos clases anteriores, los une y los envia.
     override fun onBindViewHolder(holder: ViewHolderUsers, position: Int) {
 
-        holder.render(listUsers[position], onDeleteItem, onSelectItem)
+        holder.render(getItem(position), onDeleteItem, onSelectItem)
+    }
+
+    private object DiffUtilUserCallBack : DiffUtil.ItemCallback<Users>(){
+
+        //Elementos que ingresan y se comparan items
+        override fun areItemsTheSame(oldItem: Users, newItem: Users): Boolean {
+
+            return (oldItem.id == newItem.id)
+        }
+
+        //Elementos que ingresan y se comparan el contenido
+        override fun areContentsTheSame(oldItem: Users, newItem: Users): Boolean {
+
+            return (oldItem == newItem)
+        }
+
+
     }
 
 }
