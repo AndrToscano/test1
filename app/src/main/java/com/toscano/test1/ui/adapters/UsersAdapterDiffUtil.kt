@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.toscano.test1.R
-import com.toscano.test1.data.entities.Users
 import com.toscano.test1.databinding.UsersLayoutItemsBinding
+import com.toscano.test1.logic.entities.FullInfoAnimeLG
 
 class UsersAdapterDiffUtil (private val onDeleteItem : (Int )-> Unit,
-                            private val onSelectItem: ( Users ) -> Unit) :
-                            ListAdapter<Users, UsersAdapterDiffUtil.ViewHolderUsers>(DiffUtilUserCallBack) {
+                            private val onSelectItem: ( FullInfoAnimeLG ) -> Unit) :
+                            ListAdapter<FullInfoAnimeLG, UsersAdapterDiffUtil.ViewHolderUsers>(DiffUtilUserCallBack) {
 
 
     //Creamos una CLase ViewHolder
@@ -23,12 +23,12 @@ class UsersAdapterDiffUtil (private val onDeleteItem : (Int )-> Unit,
         private var binding: UsersLayoutItemsBinding = UsersLayoutItemsBinding.bind(view)
 
         //Encargada de la iteracion de cada usuario
-        fun render (item: Users, onDeleteItem : ( Int)-> Unit, onSelectItem: ( Users ) -> Unit) {
+        fun render (item: FullInfoAnimeLG, onDeleteItem : ( Int)-> Unit, onSelectItem: ( FullInfoAnimeLG ) -> Unit) {
 
             //Ingreso de datos que se implementaran en la Interfaz
             binding.txtUserName.text = item.name
-            binding.txtUserDesc.text = item.desc
-            binding.imgUser.load(item.img)
+            binding.txtUserDesc.text = item.synopsis
+            binding.imgUser.load(item.big_image)
 
             binding.btnBorrar.setOnClickListener {
                 onDeleteItem(adapterPosition)
@@ -57,16 +57,16 @@ class UsersAdapterDiffUtil (private val onDeleteItem : (Int )-> Unit,
         holder.render(getItem(position), onDeleteItem, onSelectItem)
     }
 
-    private object DiffUtilUserCallBack : DiffUtil.ItemCallback<Users>(){
+    private object DiffUtilUserCallBack : DiffUtil.ItemCallback<FullInfoAnimeLG>(){
 
         //Elementos que ingresan y se comparan items
-        override fun areItemsTheSame(oldItem: Users, newItem: Users): Boolean {
+        override fun areItemsTheSame(oldItem: FullInfoAnimeLG, newItem: FullInfoAnimeLG): Boolean {
 
             return (oldItem.id == newItem.id)
         }
 
         //Elementos que ingresan y se comparan el contenido
-        override fun areContentsTheSame(oldItem: Users, newItem: Users): Boolean {
+        override fun areContentsTheSame(oldItem: FullInfoAnimeLG, newItem: FullInfoAnimeLG): Boolean {
 
             return (oldItem == newItem)
         }

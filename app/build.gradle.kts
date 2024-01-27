@@ -1,6 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
+    //Safe Args
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -53,4 +56,16 @@ dependencies {
     //ImageView
     implementation("io.coil-kt:coil:2.5.0")
     implementation ("com.airbnb.android:lottie:6.2.0")
+
+    //Retrofit (API)
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //Corrutinas
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+    //Navigation Component
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
 }
