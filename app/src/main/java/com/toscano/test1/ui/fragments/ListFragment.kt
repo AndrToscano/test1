@@ -33,8 +33,7 @@ class ListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentListBinding.bind(inflater.inflate(R.layout.fragment_list, container, false))
         return binding.root
@@ -53,7 +52,6 @@ class ListFragment : Fragment() {
         binding.rvUsers.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
 
         loadDataRecyclerView()
-
     }
 
     private fun loadDataRecyclerView(){
@@ -78,7 +76,6 @@ class ListFragment : Fragment() {
             binding.progressBar.visibility = View.GONE
         }
     }
-
 
     private fun insertUsersDiff(animes: List<FullInfoAnimeLG>){
 

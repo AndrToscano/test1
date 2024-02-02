@@ -23,5 +23,13 @@
             android:name="idAnime"
             app:argType="integer"
             android:defaultValue="-99" />
+        <argument
+            android:name="nameAnime"
+            app:argType="string"
+            android:defaultValue="From First Argument" />
+        <argument
+            android:name="infoAnime"
+            app:argType="string"
+            android:defaultValue="From First Argument" />
     </fragment>
 </navigation>

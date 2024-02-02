@@ -1,9 +1,9 @@
 package com.toscano.test1.logic.entities
 
 data class FullInfoAnimeLG (
-    var id : Int = 0,
-    var name : String = "",
-    var small_image : String = "",
-    var big_image : String = "",
-    var synopsis :String= ""
+    val id : Int = 0,
+    val name : String = "",
+    val small_image : String = "",
+    val big_image : String = "",
+    val synopsis :String= ""
 )
